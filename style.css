@@ -50,14 +50,9 @@ label {
     border: 1px solid #ccc;
 }
 
-.register {
-    margin-top: 15px;
-    font-size: 14px;
-    color: #555;
-    cursor: pointer;
-}
 
-.forgot-password {
+
+.auth {
     display: flex;
     justify-content: space-between;
     margin: 15px 0;
