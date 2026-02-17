@@ -63,7 +63,10 @@ label {
     font-size: 12px;
 }
 
-
+.class {
+    text-align: center;
+    font-weight: bold;
+}
 
 .register {
     margin-top: 20px;

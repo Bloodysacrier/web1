@@ -3,15 +3,19 @@ document.getElementById("loginForm").addEventListener("submit", function(e) {
 
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
+    const message = document.getElementById("message");
 
-    // Credenciales hardcodeadas
     const validUser = "bloodysacrier";
     const validPass = "Draven55";
 
     if (username === validUser && password === validPass) {
-        alert("Login exitoso");
+        message.textContent = "Cargando";
+        message.style.color = "green";
+
         window.location.href = "../preview.html";
+
     } else {
-        alert("Usuario o contraseña incorrectos");
+        message.textContent = "Usuario o contraseña incorrectos";
+        message.style.color = "red";
     }
 });
