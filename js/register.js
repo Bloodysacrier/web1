@@ -6,8 +6,7 @@ document.getElementById("registerForm").addEventListener("submit", function(e) {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
 
-    const username = email; // Usaremos el correo como username
-
+    const username = email; 
     const newUser = {
         username: username,
         password: password
@@ -28,5 +27,5 @@ document.getElementById("registerForm").addEventListener("submit", function(e) {
 
     alert("Cuenta creada correctamente");
 
-    window.location.href = "index1.html"; // regresar al login
+    window.location.href = "index1.html"; 
 });

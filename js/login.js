@@ -6,20 +6,16 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
     const message = document.getElementById("message");
 
     try {
-        // Leer users.json
         const response = await fetch("users.json");
         const data = await response.json();
 
-        // Usuarios del JSON
         let users = data.users;
 
-        // Usuarios guardados en localStorage
         const localUsers = JSON.parse(localStorage.getItem("users")) || [];
 
-        // Unimos ambos
         users = [...users, ...localUsers];
 
-        // Validar usuario
+       
         const userFound = users.find(user => 
             user.username === username && user.password === password
         );
