@@ -204,3 +204,19 @@ label {
     font-size: 14px;
 }
 
+/* Pokemon */
+#pokemon {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    flex-wrap: wrap;
+
+}
+
+.card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 130px;
+    text-align: center;
+}
+
