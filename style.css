@@ -214,9 +214,37 @@ label {
 }
 
 .card {
-    border: 1px solid #ccc;
-    padding: 10px;
-    width: 130px;
-    text-align: center;
+  width: 180px;
+  padding: 15px;
+  margin: 10px;
+  border-radius: 15px;
+  text-align: center;
+  transition: transform 0.2s ease;
 }
 
+.card:hover {
+  transform: scale(1.05);
+}
+
+.types {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.type {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+#searchInput, #typeFilter {
+    padding: 10px;
+    margin: 10px 5px 20px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
