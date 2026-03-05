@@ -1,7 +1,9 @@
+// Elementos del DOM
 const container = document.getElementById("pokemon");
 const searchInput = document.getElementById("searchInput");
 const typeFilter = document.getElementById("typeFilter");
 
+// Colores para cada tipo 
 const typeColors = {
   grass: "#78C850",
   poison: "#A040A0",
@@ -23,9 +25,10 @@ const typeColors = {
   flying: "#A890F0"
 };
 
-// almacenar todos los Pokémon
+// Almacenar todos los Pokémon
 let allPokemon = [];
 
+// Cargar todos los Pokémon desde la API
 async function loadAllPokemon() {
   try {
     const countResponse = await fetch("https://pokeapi.co/api/v2/pokemon?limit=1");
@@ -36,22 +39,30 @@ async function loadAllPokemon() {
     for (let offset = 0; offset < total; offset += batchSize) {
       const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${batchSize}&offset=${offset}`);
       const data = await response.json();
-      const pokemonPromises = data.results.map(poke => fetch(poke.url).then(res => res.json()));
+
+      const pokemonPromises = data.results.map(poke =>
+        fetch(poke.url).then(res => res.json())
+      );
+
       const pokemons = await Promise.all(pokemonPromises);
+
       allPokemon.push(...pokemons);
+
       renderPokemonList(allPokemon);
     }
+
   } catch (error) {
     console.error("Error:", error);
   }
 }
 
-// 
+// Renderizar lista de Pokémon
 function renderPokemonList(list) {
   container.innerHTML = "";
   list.forEach(renderPokemon);
 }
 
+// Crear tarjeta de Pokémon
 function renderPokemon(pokemon) {
   const card = document.createElement("div");
   card.classList.add("card");
@@ -60,7 +71,8 @@ function renderPokemon(pokemon) {
   number.textContent = `#${pokemon.id}`;
 
   const name = document.createElement("h3");
-  name.textContent = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
+  name.textContent =
+    pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
 
   const img = document.createElement("img");
   img.src = pokemon.sprites.front_default;
@@ -70,11 +82,14 @@ function renderPokemon(pokemon) {
 
   pokemon.types.forEach(typeInfo => {
     const typeName = typeInfo.type.name;
+
     const type = document.createElement("span");
     type.classList.add("type");
     type.textContent = typeName;
+
     type.style.backgroundColor = typeColors[typeName] || "#777";
     type.style.color = "white";
+
     typesContainer.appendChild(type);
   });
 
@@ -86,21 +101,32 @@ function renderPokemon(pokemon) {
   container.appendChild(card);
 }
 
-// Búsqueda y filtro
+// Eventos de búsqueda y filtro
 searchInput.addEventListener("input", applyFilters);
 typeFilter.addEventListener("change", applyFilters);
 
+// Aplicar filtros de nombre, ID y tipo
 function applyFilters() {
   const searchTerm = searchInput.value.toLowerCase();
   const selectedType = typeFilter.value;
 
   const filtered = allPokemon.filter(pokemon => {
-    const matchesName = pokemon.name.toLowerCase().includes(searchTerm);
-    const matchesType = selectedType === "" || pokemon.types.some(t => t.type.name === selectedType);
-    return matchesName && matchesType;
+
+    const idString = pokemon.id.toString();
+
+    const matchesSearch =
+      pokemon.name.toLowerCase().includes(searchTerm) ||
+      idString.includes(searchTerm);
+
+    const matchesType =
+      selectedType === "" ||
+      pokemon.types.some(t => t.type.name === selectedType);
+
+    return matchesSearch && matchesType;
   });
 
   renderPokemonList(filtered);
 }
 
+// Iniciar carga de Pokémon
 loadAllPokemon();
