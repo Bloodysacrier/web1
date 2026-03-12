@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Batalla Pokémon</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="battle-container">
+
+    <h1>Batalla Pokémon</h1>
+
+    <div class="selectors">
+
+      <!-- POKEMON 1 -->
+      <div class="pokemon-card">
+
+        <h3>Pokémon 1</h3>
+
+        <select id="pokemonA"></select>
+
+        <img id="imgA" src="" width="150">
+
+        <div class="hp-bar">
+          <div id="hpA" class="fill" style="width:100%"></div>
+        </div>
+
+        <p id="hpTextA">Vida: 100</p>
+
+      </div>
+
+
+      <!-- POKEMON 2 -->
+      <div class="pokemon-card">
+
+        <h3>Pokémon 2</h3>
+
+        <select id="pokemonB"></select>
+
+        <img id="imgB" src="" width="150">
+
+        <div class="hp-bar">
+          <div id="hpB" class="fill" style="width:100%"></div>
+        </div>
+
+        <p id="hpTextB">Vida: 100</p>
+
+      </div>
+
+    </div>
+
+
+    <!-- CONTROLES -->
+    <div class="controls">
+
+      <button onclick="iniciarBatalla()">Iniciar Batalla</button>
+
+      <button onclick="siguienteTurno()">Siguiente Turno</button>
+
+    </div>
+
+
+    <!-- LOG DE BATALLA -->
+    <div id="battleLog">
+      <p>Selecciona dos Pokémon y presiona iniciar batalla</p>
+    </div>
+
+
+    <!-- GANADOR -->
+    <div id="winnerBanner" style="display:none">
+
+      <h2 id="winnerText"></h2>
+
+      <img id="winnerImg" width="200">
+
+    </div>
+
+
+  </div>
+
+  <script src="js/battle.js"></script>
+
+</body>
+</html>
